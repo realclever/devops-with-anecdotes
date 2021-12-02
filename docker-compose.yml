@@ -1,0 +1,17 @@
+#docker-compose.yml
+
+version: '3.5'
+
+services:
+
+  anecdotes:
+    build: .
+    ports:
+      - 3000:3000
+    volumes:
+      - ./anecdotes/:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    command: npm start
+
+volumes:
+  node_modules: 
