@@ -4,6 +4,6 @@ EXPOSE 3000
  
 WORKDIR /usr/src/app
 
-COPY /anecdotes .
+COPY . .
 
 RUN npm install
