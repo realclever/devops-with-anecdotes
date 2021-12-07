@@ -1,4 +1,4 @@
-FROM node:14
+FROM alpine
 
 EXPOSE 3000
  
@@ -6,8 +6,13 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install
+RUN apk add --no-cache nodejs npm && \
+    npm install && \ 
+    npm run build && \
+    adduser -D appuser && \
+    chown -R appuser:appuser /usr/src/app && \
+    rm -rf /var/lib/apt/lists/* 
 
-RUN npm run build
+USER appuser
 
 CMD [ "npm", "start" ]
